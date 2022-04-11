@@ -12,7 +12,7 @@
 
 bool isBusy(ctrl_t ctrl) {return ctrl.b;}
 
-// Function to print the ctrl register
+/* Function to print the ctrl register*/
 void printCtrl(ctrl_t *ctrl) {
     printf("R: %u", ctrl->r);
     printf(" W: %u", ctrl->w);
@@ -37,8 +37,8 @@ void foo_periph_init(ctrl_t *ctrl, uint8_t tx_pin, uint8_t rx_pin)
     MCU_STEP;
 }
 
-// foo_periph_tx_data: send the specified 32bit variable to
-//the peripheral (recall you have to set the TXDATA register)
+/* foo_periph_tx_data: send the specified 32bit variable to
+the peripheral (recall you have to set the TXDATA register)*/
 void foo_periph_tx_data(FooPeriph_t *device, uint32_t data)
 {
     while (isBusy(device->CTRL)) {
@@ -53,8 +53,8 @@ void foo_periph_tx_data(FooPeriph_t *device, uint32_t data)
 
 }
 
-// foo_periph_rx_data: send the specified 32bit variable to
-//the peripheral (recall you have to set the TXDATA register)
+/* foo_periph_rx_data: send the specified 32bit variable to
+the peripheral (recall you have to set the TXDATA register)*/
 uint32_t foo_periph_rx_data(FooPeriph_t *device)
 {
     while (isBusy(device->CTRL)) {

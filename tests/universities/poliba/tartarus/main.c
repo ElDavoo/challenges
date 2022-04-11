@@ -12,7 +12,7 @@
 /* Of course you can implement functions to be called in the main if you need */
 
 
-#define NUMBERS 100
+#define NUMBERS 1
 int main()
 {
     /*Read 10 32-bit unsigned int readings from the
@@ -27,12 +27,13 @@ peripheral
     foo_periph_init(FOO_PERIPH, 32, 33);
     printf("Initialized device\n");
     uint32_t values[NUMBERS];
-    for (int i =0 ; i< NUMBERS; i++){
+    int i = 0;
+    for (i =0 ; i< NUMBERS; i++){
         values[i] = foo_periph_rx_data(FOO_PERIPH);
         printf("Read value %d\n", values[i]);
     }
     uint64_t average = 0;
-    for (int i =0 ; i< NUMBERS; i++){
+    for (i =0 ; i< NUMBERS; i++){
         average += values[i];
     }
     average = average/NUMBERS;
