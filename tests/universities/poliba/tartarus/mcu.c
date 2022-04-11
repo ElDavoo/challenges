@@ -5,47 +5,47 @@
 #include <time.h>
 #include <stdarg.h>
 
-struct a_f2fbeff737f9623ccba574bb9ca500eb {
+struct foo_mcu_regs_t {
     uint32_t CTRL;
     uint32_t RXDATA;
     uint32_t TXDATA;
 };
-typedef struct a_f2fbeff737f9623ccba574bb9ca500eb foo_mcu_regs_t;
-struct a_6666732d1d927a44729510a254c2ef18 {
+typedef struct foo_mcu_regs_t foo_mcu_regs_t;
+struct foo_mcu_t {
     uint32_t sys_tick;
     uint32_t sys_tick_idle;
     uint8_t state;
     foo_mcu_regs_t regs;
     foo_mcu_regs_t regs_old;
 };
-typedef struct a_6666732d1d927a44729510a254c2ef18 foo_mcu_t;
-foo_mcu_t o_8564a6b5f08e8217e6bb707b1a20be8a;
-void *regs = &(o_8564a6b5f08e8217e6bb707b1a20be8a.regs);
+typedef struct foo_mcu_t foo_mcu_t;
+foo_mcu_t mcu;
+void *regs = &(mcu.regs);
 
-void o_ba6ac9918776da86fb709a00dac670c4(foo_mcu_t *o_068fc7d28d47b832159c2da15e323187,
-                                        const char *o_1e5eba04d086487857865512f1a1fb92,
-                                        const char *o_47d3fd7964c654f64251c54a5b6c026e, ...) {
-    va_list o_23da420366332a9e19b0620af61fef3f;
-    va_start(o_23da420366332a9e19b0620af61fef3f, o_47d3fd7964c654f64251c54a5b6c026e);
-    printf("\x25""s\133%\x30""3\144]\x20""", o_1e5eba04d086487857865512f1a1fb92,
-           o_068fc7d28d47b832159c2da15e323187->sys_tick);
-    vprintf(o_47d3fd7964c654f64251c54a5b6c026e, o_23da420366332a9e19b0620af61fef3f);
+void printWithSysTick(foo_mcu_t *fooMcu,
+                      const char *stringToPrint,
+                      const char *n, ...) {
+    va_list vl;
+    va_start(vl, n);
+    printf("\x25""s\133%\x30""3d] """, stringToPrint,
+           fooMcu->sys_tick);
+    vprintf(n, vl);
     printf("\x1B""[\060m");
-    va_end(o_23da420366332a9e19b0620af61fef3f);
+    va_end(vl);
 };
 
-void o_196b64ff67cb3698d301018b28823628(foo_mcu_t *o_35581ac0a159ee719a41d1195a78c06d) {
-    if (o_35581ac0a159ee719a41d1195a78c06d) {
-        o_35581ac0a159ee719a41d1195a78c06d->sys_tick += (0x0000000000000002 + 0x0000000000000201 + 0x0000000000000801 -
-                                                         0x0000000000000A03);
+void addTick(foo_mcu_t *fooMcu) {
+    if (fooMcu) {
+        fooMcu->sys_tick += (0x0000000000000002 + 0x0000000000000201 + 0x0000000000000801 -
+                             0x0000000000000A03);
     };
 };
 
-void o_72a27cbbbf5c7de60061429b706c7ade(foo_mcu_regs_t *o_3b88a1f7f4894b515f7c7370cf5ae101,
-                                        uint32_t o_df471f48b576e1f43b84046a94c21a08) { o_3b88a1f7f4894b515f7c7370cf5ae101->CTRL |= o_df471f48b576e1f43b84046a94c21a08; };
+void o_72a27cbbbf5c7de60061429b706c7ade(foo_mcu_regs_t *mcuRegs,
+                                        uint32_t o_df471f48b576e1f43b84046a94c21a08) { mcuRegs->CTRL |= o_df471f48b576e1f43b84046a94c21a08; };
 
-void o_90b9703e2a3361b74dbcc5ed67c41cd6(foo_mcu_regs_t *o_c3819c782df20c74549c0101bf060cc1,
-                                        uint32_t o_9d5ee8430f47e22c6710de6f4960828b) { o_c3819c782df20c74549c0101bf060cc1->CTRL &= ~o_9d5ee8430f47e22c6710de6f4960828b; };
+void o_90b9703e2a3361b74dbcc5ed67c41cd6(foo_mcu_regs_t *mcuRegs,
+                                        uint32_t o_9d5ee8430f47e22c6710de6f4960828b) { mcuRegs->CTRL &= ~o_9d5ee8430f47e22c6710de6f4960828b; };
 
 uint8_t o_12188f50ebb21a6806de0cd61946247d(foo_mcu_regs_t *o_195220b25f952b3eee83f8b2d38c90bb,
                                            uint32_t o_d36fdf8ced93fae004e7fed26597efcd,
@@ -156,30 +156,30 @@ void o_0a058493a2b5534c760709fbe8d1fa94(foo_mcu_regs_t *o_4bcb2b0601f7815aafbe7c
                                                0x0000000000000A21), o_12a01f57b606806d52e472fda34bd5ea);
 };
 
-void o_bc5af8fe1ab51ac1e7f30cdabe23f232(foo_mcu_t *o_e9c46ab9f26169d2816536ef4230fa3c) {
-    foo_mcu_regs_t *o_28bea975ddd4042ec0678caf30df40ff = &(o_e9c46ab9f26169d2816536ef4230fa3c->regs);
+void o_bc5af8fe1ab51ac1e7f30cdabe23f232(foo_mcu_t *fooMcu) {
+    foo_mcu_regs_t *pFooMcuRegs = &(fooMcu->regs);
     uint8_t o_2a6e7e7c79d887866294c6c412680b61, o_bcc059fa7cc12a437a31d93a84d4e9a2, o_29497b53c90c3adfb578022f37550aaa, o_46eab19159790a19d97d3495ce1dcd39, o_41b60993bf8bf35ed776e73e52922f34;
-    o_29497b53c90c3adfb578022f37550aaa = o_80fffed2be4ec6c9b0cf579d6e8c459f(o_28bea975ddd4042ec0678caf30df40ff);
-    o_46eab19159790a19d97d3495ce1dcd39 = o_db05a6b6ce8cb30ec735ab77f7f2beb5(o_28bea975ddd4042ec0678caf30df40ff);
-    o_41b60993bf8bf35ed776e73e52922f34 = o_90e929fcb044f4de8e3e926490919eb5(o_28bea975ddd4042ec0678caf30df40ff);
-    o_bcc059fa7cc12a437a31d93a84d4e9a2 = o_77969eea28f6bb59d78f611e4145911b(o_28bea975ddd4042ec0678caf30df40ff);
-    o_2a6e7e7c79d887866294c6c412680b61 = o_b7afb496fe3bcb9985ff8581fa24e2f0(o_28bea975ddd4042ec0678caf30df40ff);
-    o_ba6ac9918776da86fb709a00dac670c4(o_e9c46ab9f26169d2816536ef4230fa3c, "\x1B""[\0631\x6D""",
-                                       "\x4D""C\125 \x72""e\147s\x20""d\165m\x70"":\040");
-    o_ba6ac9918776da86fb709a00dac670c4(o_e9c46ab9f26169d2816536ef4230fa3c, "\x1B""[\0631\x6D""",
-                                       "\x43""T\122L\x3A"" \124X\x50""I\116:\x20""%\144 \x52""X\120I\x4E"":\040%\x64"" \127R\x49""T\105:\x20""%\144 \x52""E\101D\x3A"" \045d\x20""B\125S\x59"":\040%\x64""\x0A",
-                                       o_2a6e7e7c79d887866294c6c412680b61, o_bcc059fa7cc12a437a31d93a84d4e9a2,
-                                       o_46eab19159790a19d97d3495ce1dcd39, o_29497b53c90c3adfb578022f37550aaa,
-                                       o_41b60993bf8bf35ed776e73e52922f34);
-    o_ba6ac9918776da86fb709a00dac670c4(o_e9c46ab9f26169d2816536ef4230fa3c, "\x1B""[\0631\x6D""",
-                                       "\x52""X\104A\x54""A\072 \x30""x\045X\x09""T\130D\x41""T\101:\x20""0\170%\x58""\x0A",
-                                       o_28bea975ddd4042ec0678caf30df40ff->RXDATA,
-                                       o_28bea975ddd4042ec0678caf30df40ff->TXDATA);
+    o_29497b53c90c3adfb578022f37550aaa = o_80fffed2be4ec6c9b0cf579d6e8c459f(pFooMcuRegs);
+    o_46eab19159790a19d97d3495ce1dcd39 = o_db05a6b6ce8cb30ec735ab77f7f2beb5(pFooMcuRegs);
+    o_41b60993bf8bf35ed776e73e52922f34 = o_90e929fcb044f4de8e3e926490919eb5(pFooMcuRegs);
+    o_bcc059fa7cc12a437a31d93a84d4e9a2 = o_77969eea28f6bb59d78f611e4145911b(pFooMcuRegs);
+    o_2a6e7e7c79d887866294c6c412680b61 = o_b7afb496fe3bcb9985ff8581fa24e2f0(pFooMcuRegs);
+    printWithSysTick(fooMcu, "\x1B""[\0631\x6D""",
+                     "\x4D""CU r""egs ""dump"": ");
+    printWithSysTick(fooMcu, "\x1B""[\0631\x6D""",
+                     "\x43""T\122L\x3A"" \124X\x50""I\116: ""%d \x52""X\120I\x4E"": %\x64"" WR\x49""T\105: ""%d \x52""E\101D\x3A"" \045d ""BUS\x59"": %\x64""\x0A",
+                     o_2a6e7e7c79d887866294c6c412680b61, o_bcc059fa7cc12a437a31d93a84d4e9a2,
+                     o_46eab19159790a19d97d3495ce1dcd39, o_29497b53c90c3adfb578022f37550aaa,
+                     o_41b60993bf8bf35ed776e73e52922f34);
+    printWithSysTick(fooMcu, "\x1B""[\0631\x6D""",
+                     "\x52""X\104A\x54""A\072 \x30""x\045X\x09""T\130D\x41""T\101: ""0\170%\x58""\x0A",
+                     pFooMcuRegs->RXDATA,
+                     pFooMcuRegs->TXDATA);
 };
 
 void o_caf09b4914d1bcc74f5e17949454a8b3(foo_mcu_t *o_e56d732b7e5e97e88da8aa6a79021125) {
-    o_ba6ac9918776da86fb709a00dac670c4(o_e56d732b7e5e97e88da8aa6a79021125, "\x1B""[\0631\x6D""",
-                                       "\x4D""C\125 \x68""a\154t\x65""d\012");
+    printWithSysTick(o_e56d732b7e5e97e88da8aa6a79021125, "\x1B""[\0631\x6D""",
+                     "\x4D""CU h""alt\x65""d\012");
     o_bc5af8fe1ab51ac1e7f30cdabe23f232(o_e56d732b7e5e97e88da8aa6a79021125);
     while ((0x0000000000000002 + 0x0000000000000201 + 0x0000000000000801 - 0x0000000000000A03)) {};
 };
@@ -190,15 +190,15 @@ uint8_t o_ac02cef19c00e137e7efd46c676269fd(foo_mcu_t *o_9cc5df9f4ad6898a08c9c8f5
     o_eadd8259fd07f6d02d29ad0b20010e13 = &(o_9cc5df9f4ad6898a08c9c8f5e3517ded->regs_old);
     if (o_db05a6b6ce8cb30ec735ab77f7f2beb5(o_8b30ffe368accc4b0ff59cb00ee7b37d) &&
         o_80fffed2be4ec6c9b0cf579d6e8c459f(o_8b30ffe368accc4b0ff59cb00ee7b37d)) {
-        o_ba6ac9918776da86fb709a00dac670c4(o_9cc5df9f4ad6898a08c9c8f5e3517ded, "\x1B""[\0631\x6D""",
-                                           "\x45""r\162o\x72"".\040Y\x6F""u\040c\x61""n\156o\x74"" \162e\x61""d\040a\x6E""d\040w\x72""i\164e\x20""a\164 \x74""h\145 \x73""a\155e\x20""t\151m\x65"".\012");
+        printWithSysTick(o_9cc5df9f4ad6898a08c9c8f5e3517ded, "\x1B""[\0631\x6D""",
+                         "\x45""rror"". Yo""u c\x61""n\156o\x74"" re\x61""d an""d wr""i\164e ""a\164 \x74""h e \x73""a\155e ""tim\x65"".\012");
         return (0x0000000000000002 + 0x0000000000000201 + 0x0000000000000801 - 0x0000000000000A03);
     };
     if ((o_db05a6b6ce8cb30ec735ab77f7f2beb5(o_8b30ffe368accc4b0ff59cb00ee7b37d) ||
          o_80fffed2be4ec6c9b0cf579d6e8c459f(o_8b30ffe368accc4b0ff59cb00ee7b37d)) &&
         o_90e929fcb044f4de8e3e926490919eb5(o_8b30ffe368accc4b0ff59cb00ee7b37d)) {
-        o_ba6ac9918776da86fb709a00dac670c4(o_9cc5df9f4ad6898a08c9c8f5e3517ded, "\x1B""[\0631\x6D""",
-                                           "\x45""r\162o\x72"".\040Y\x6F""u\040c\x61""n\156o\x74"" \162e\x61""d\040o\x72"" \167r\x69""t\145 \x77""h\145n\x20""t\150e\x20""p\145r\x69""p\150 \x69""s\040b\x75""s\171.\x0A""");
+        printWithSysTick(o_9cc5df9f4ad6898a08c9c8f5e3517ded, "\x1B""[\0631\x6D""",
+                         "\x45""rror"". Yo""u c\x61""n\156o\x74"" re\x61""d or"" \167ri""t e \x77""h en ""the ""p eri""ph i""s b\x75""s\171.\x0A""");
         return (0x0000000000000004 + 0x0000000000000202 + 0x0000000000000802 - 0x0000000000000A06);
     };
     return (0x0000000000000000 + 0x0000000000000200 + 0x0000000000000800 - 0x0000000000000A00);
@@ -228,18 +228,18 @@ void o_4f945a415e974cce52763083f3d894e1(foo_mcu_t *o_5fdd523d0613be7a3eee3fcf738
              (0x000000000000011E + 0x000000000000028F + 0x000000000000088F - 0x0000000000000BAD)) &
             !!(o_3decc86c0e8e098db9596ec537551976 > (0x000000000000011E + 0x000000000000028F + 0x000000000000088F -
                                                      0x0000000000000BAD))) {
-            o_ba6ac9918776da86fb709a00dac670c4(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0631\x6D""",
-                                               "\x45""r\162o\x72"".\040Y\x6F""u\040a\x72""e\040t\x72""y\151n\x67"" \164o\x20""w\162i\x74""e\040t\x6F"" \141 \x70""i\156 \x74""h\141t\x20""i\163 \x6E""o\164 \x61""l\154o\x77""e\144\x0A");
+            printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0631\x6D""",
+                             "\x45""rror"". Yo""u ar""e tr""yin\x67"" \164o ""wri\x74""e to"" \141  p""i\156 \x74""h\141t ""i\163 n""o\164 \x61""llo\x77""ed\x0A");
             o_caf09b4914d1bcc74f5e17949454a8b3(o_5fdd523d0613be7a3eee3fcf73821b31);
             return;
         };
         if (o_3decc86c0e8e098db9596ec537551976 == o_6e94d8ce35f85f4e02edaf2a23647ee2) {
-            o_ba6ac9918776da86fb709a00dac670c4(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0631\x6D""",
-                                               "\x45""r\162o\x72"".\040T\x58"" \141n\x64"" \122X\x20""w\151r\x65""s\040a\x72""e\040a\x73""s\151g\x6E""e\144 \x74""o\040t\x68""e\040s\x61""m\145 \x70""i\156.\x0A""");
+            printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0631\x6D""",
+                             "\x45""rror"". T\x58"" \141n\x64"" \122X ""wir\x65""s ar""e a\x73""sign""ed \x74""o th""e s\x61""m e  p""i\156.\x0A""");
             o_caf09b4914d1bcc74f5e17949454a8b3(o_5fdd523d0613be7a3eee3fcf73821b31);
         };
-        o_ba6ac9918776da86fb709a00dac670c4(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0632\x6D""",
-                                           "\x53""t\141r\x74""i\156g\x20""a\040R\x58"" \157p\x65""r\141t\x69""o\156.\x0A""");
+        printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0632\x6D""",
+                         "\x53""t\141r\x74""i\156g ""a R\x58"" \157p\x65""r\141ti""o\156.\x0A""");
         o_5fdd523d0613be7a3eee3fcf73821b31->sys_tick_idle =
                 o_5fdd523d0613be7a3eee3fcf73821b31->sys_tick + o_03483490132b42cfebba9b2b0e7c16f3;
         o_a56332c23f30413b1482d90134fb017c(o_3f5a390808594b2b59c6baaa7809cfe5);
@@ -261,18 +261,18 @@ void o_4f945a415e974cce52763083f3d894e1(foo_mcu_t *o_5fdd523d0613be7a3eee3fcf738
              (0x000000000000011E + 0x000000000000028F + 0x000000000000088F - 0x0000000000000BAD)) &
             !!(o_6e94d8ce35f85f4e02edaf2a23647ee2 > (0x000000000000011E + 0x000000000000028F + 0x000000000000088F -
                                                      0x0000000000000BAD))) {
-            o_ba6ac9918776da86fb709a00dac670c4(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0631\x6D""",
-                                               "\x45""r\162o\x72"".\040Y\x6F""u\040a\x72""e\040t\x72""y\151n\x67"" \164o\x20""w\162i\x74""e\040t\x6F"" \141 \x70""i\156 \x74""h\141t\x20""i\163 \x6E""o\164 \x61""l\154o\x77""e\144\x0A");
+            printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0631\x6D""",
+                             "\x45""rror"". Yo""u ar""e tr""yin\x67"" \164o ""wri\x74""e to"" \141  p""i\156 \x74""h\141t ""i\163 n""o\164 \x61""llo\x77""ed\x0A");
             o_caf09b4914d1bcc74f5e17949454a8b3(o_5fdd523d0613be7a3eee3fcf73821b31);
             return;
         };
         if (o_3decc86c0e8e098db9596ec537551976 == o_6e94d8ce35f85f4e02edaf2a23647ee2) {
-            o_ba6ac9918776da86fb709a00dac670c4(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0631\x6D""",
-                                               "\x45""r\162o\x72"".\040T\x58"" \141n\x64"" \122X\x20""w\151r\x65""s\040a\x72""e\040a\x73""s\151g\x6E""e\144 \x74""o\040t\x68""e\040s\x61""m\145 \x70""i\156.\x0A""");
+            printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0631\x6D""",
+                             "\x45""rror"". T\x58"" \141n\x64"" \122X ""wir\x65""s ar""e a\x73""sign""ed \x74""o th""e s\x61""m e  p""i\156.\x0A""");
             o_caf09b4914d1bcc74f5e17949454a8b3(o_5fdd523d0613be7a3eee3fcf73821b31);
         };
-        o_ba6ac9918776da86fb709a00dac670c4(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0632\x6D""",
-                                           "\x53""t\141r\x74""i\156g\x20""a\040T\x58"" \157p\x65""r\141t\x69""o\156\x0A");
+        printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0632\x6D""",
+                         "\x53""t\141r\x74""i\156g ""a T\x58"" \157p\x65""r\141ti""o\156\x0A");
         o_5fdd523d0613be7a3eee3fcf73821b31->sys_tick_idle =
                 o_5fdd523d0613be7a3eee3fcf73821b31->sys_tick + o_7fc4569c3a90443139409734b95d8a3c;
         o_45c8b920638c46b9ec2035e717d8af3d(o_3f5a390808594b2b59c6baaa7809cfe5);
@@ -284,34 +284,34 @@ void o_4f945a415e974cce52763083f3d894e1(foo_mcu_t *o_5fdd523d0613be7a3eee3fcf738
 };
 
 void mcu_one_iteration() {
-    foo_mcu_t *o_ef575290c7a418330b8b9fda762e7b5b = &o_8564a6b5f08e8217e6bb707b1a20be8a;
+    foo_mcu_t *pMcu = &mcu;
     srand(time(NULL));
-    if ((o_ac02cef19c00e137e7efd46c676269fd(o_ef575290c7a418330b8b9fda762e7b5b) >
+    if ((o_ac02cef19c00e137e7efd46c676269fd(pMcu) >
          (0x0000000000000000 + 0x0000000000000200 + 0x0000000000000800 - 0x0000000000000A00)) &
-        !!(o_ac02cef19c00e137e7efd46c676269fd(o_ef575290c7a418330b8b9fda762e7b5b) >
+        !!(o_ac02cef19c00e137e7efd46c676269fd(pMcu) >
            (0x0000000000000000 + 0x0000000000000200 + 0x0000000000000800 -
-            0x0000000000000A00))) { o_caf09b4914d1bcc74f5e17949454a8b3(o_ef575290c7a418330b8b9fda762e7b5b); }
+            0x0000000000000A00))) { o_caf09b4914d1bcc74f5e17949454a8b3(pMcu); }
     else {
-        if (o_ef575290c7a418330b8b9fda762e7b5b->sys_tick == o_ef575290c7a418330b8b9fda762e7b5b->sys_tick_idle) {
-            o_ebdc36287735d9da2a645a50cf4818dc(&(o_ef575290c7a418330b8b9fda762e7b5b->regs));
-            if (!(o_ef575290c7a418330b8b9fda762e7b5b->state ^ 0x0000000000000001)) {
-                o_ba6ac9918776da86fb709a00dac670c4(o_ef575290c7a418330b8b9fda762e7b5b, "\x1B""[\0632\x6D""",
-                                                   "\x54""X\040f\x69""n\151s\x68""e\144.\x20""T\162a\x6E""s\155i\x74""t\145d\x20""d\141t\x61"":\0400\x78""%\130\x0A",
-                                                   o_ef575290c7a418330b8b9fda762e7b5b->regs.TXDATA);
+        if (pMcu->sys_tick == pMcu->sys_tick_idle) {
+            o_ebdc36287735d9da2a645a50cf4818dc(&(pMcu->regs));
+            if (!(pMcu->state ^ 0x0000000000000001)) {
+                printWithSysTick(pMcu, "\x1B""[\0632\x6D""",
+                                 "\x54""X fi""nish""ed. ""Tran""s\155i\x74""t ed ""d\141t\x61"": 0\x78""%\130\x0A",
+                                 pMcu->regs.TXDATA);
             };
-            if (!(o_ef575290c7a418330b8b9fda762e7b5b->state ^ 0x0000000000000002)) {
-                o_ef575290c7a418330b8b9fda762e7b5b->regs.RXDATA = (uint32_t) rand();
-                o_ba6ac9918776da86fb709a00dac670c4(o_ef575290c7a418330b8b9fda762e7b5b, "\x1B""[\0632\x6D""",
-                                                   "\x52""X\040f\x69""n\151s\x68""e\144.\x20""R\145c\x65""i\166e\x64"" \144a\x74""a\072 \x30""x\045X\x0A""",
-                                                   o_ef575290c7a418330b8b9fda762e7b5b->regs.RXDATA);
+            if (!(pMcu->state ^ 0x0000000000000002)) {
+                pMcu->regs.RXDATA = (uint32_t) rand();
+                printWithSysTick(pMcu, "\x1B""[\0632\x6D""",
+                                 "\x52""X fi""nish""ed. ""R ec\x65""i\166e\x64"" da\x74""a\072 \x30""x\045X\x0A""",
+                                 pMcu->regs.RXDATA);
             };
-            o_ef575290c7a418330b8b9fda762e7b5b->state = (0x0000000000000000 + 0x0000000000000200 + 0x0000000000000800 -
-                                                         0x0000000000000A00);
+            pMcu->state = (0x0000000000000000 + 0x0000000000000200 + 0x0000000000000800 -
+                           0x0000000000000A00);
         };
-        o_4f945a415e974cce52763083f3d894e1(o_ef575290c7a418330b8b9fda762e7b5b);
-        o_ef575290c7a418330b8b9fda762e7b5b->regs_old = o_ef575290c7a418330b8b9fda762e7b5b->regs;
-        o_196b64ff67cb3698d301018b28823628(o_ef575290c7a418330b8b9fda762e7b5b);
-        o_ba6ac9918776da86fb709a00dac670c4(o_ef575290c7a418330b8b9fda762e7b5b, "\x1B""[\0636\x6D""",
-                                           "\x54""i\143k\x21""\x0A");
+        o_4f945a415e974cce52763083f3d894e1(pMcu);
+        pMcu->regs_old = pMcu->regs;
+        addTick(pMcu);
+        printWithSysTick(pMcu, "\x1B""[\0636\x6D""",
+                         "\x54""i\143k\x21""\x0A");
     };
 };
