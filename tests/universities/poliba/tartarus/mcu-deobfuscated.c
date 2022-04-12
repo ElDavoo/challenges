@@ -165,7 +165,7 @@ void o_bc5af8fe1ab51ac1e7f30cdabe23f232(foo_mcu_t *fooMcu) {
     o_bcc059fa7cc12a437a31d93a84d4e9a2 = o_77969eea28f6bb59d78f611e4145911b(pFooMcuRegs);
     o_2a6e7e7c79d887866294c6c412680b61 = o_b7afb496fe3bcb9985ff8581fa24e2f0(pFooMcuRegs);
     printWithSysTick(fooMcu, "\x1B""[\0631\x6D""",
-                     "\x4D""CU r""egs ""dump"": ");
+                     "\x4D""CU regs dump: ");
     printWithSysTick(fooMcu, "\x1B""[\0631\x6D""",
                      "\x43""T\122L\x3A"" \124X\x50""I\116: ""%d \x52""X\120I\x4E"": %\x64"" WR\x49""T\105: ""%d \x52""E\101D\x3A"" \045d ""BUS\x59"": %\x64""\x0A",
                      o_2a6e7e7c79d887866294c6c412680b61, o_bcc059fa7cc12a437a31d93a84d4e9a2,
@@ -191,14 +191,14 @@ uint8_t o_ac02cef19c00e137e7efd46c676269fd(foo_mcu_t *o_9cc5df9f4ad6898a08c9c8f5
     if (o_db05a6b6ce8cb30ec735ab77f7f2beb5(o_8b30ffe368accc4b0ff59cb00ee7b37d) &&
         o_80fffed2be4ec6c9b0cf579d6e8c459f(o_8b30ffe368accc4b0ff59cb00ee7b37d)) {
         printWithSysTick(o_9cc5df9f4ad6898a08c9c8f5e3517ded, "\x1B""[\0631\x6D""",
-                         "\x45""rror"". Yo""u c\x61""n\156o\x74"" re\x61""d an""d wr""i\164e ""a\164 \x74""h e \x73""a\155e ""tim\x65"".\012");
+                         "\x45rror. You c\x61""n\156o\x74"" re\x61""d and wri\164e a\164 \x74""he \x73""a\155e tim\x65"".\012");
         return (0x0000000000000002 + 0x0000000000000201 + 0x0000000000000801 - 0x0000000000000A03);
     };
     if ((o_db05a6b6ce8cb30ec735ab77f7f2beb5(o_8b30ffe368accc4b0ff59cb00ee7b37d) ||
          o_80fffed2be4ec6c9b0cf579d6e8c459f(o_8b30ffe368accc4b0ff59cb00ee7b37d)) &&
         o_90e929fcb044f4de8e3e926490919eb5(o_8b30ffe368accc4b0ff59cb00ee7b37d)) {
         printWithSysTick(o_9cc5df9f4ad6898a08c9c8f5e3517ded, "\x1B""[\0631\x6D""",
-                         "\x45""rror"". Yo""u c\x61""n\156o\x74"" re\x61""d or"" \167ri""t e \x77""h en ""the ""p eri""ph i""s b\x75""s\171.\x0A""");
+                         "\x45rror. You c\x61""n\156o\x74"" re\x61""d or"" \167ri""te \x77""hen the periph is b\x75""s\171.\x0A""");
         return (0x0000000000000004 + 0x0000000000000202 + 0x0000000000000802 - 0x0000000000000A06);
     };
     return (0x0000000000000000 + 0x0000000000000200 + 0x0000000000000800 - 0x0000000000000A00);
@@ -229,13 +229,13 @@ void o_4f945a415e974cce52763083f3d894e1(foo_mcu_t *o_5fdd523d0613be7a3eee3fcf738
             !!(o_3decc86c0e8e098db9596ec537551976 > (0x000000000000011E + 0x000000000000028F + 0x000000000000088F -
                                                      0x0000000000000BAD))) {
             printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0631\x6D""",
-                             "\x45""rror"". Yo""u ar""e tr""yin\x67"" \164o ""wri\x74""e to"" \141  p""i\156 \x74""h\141t ""i\163 n""o\164 \x61""llo\x77""ed\x0A");
+                             "\x45""rror"". You are tryin\x67 \164o wri\x74""e to \141  pi\156 \x74h\141t i\163 no\164 \x61llo\x77""ed\x0A");
             o_caf09b4914d1bcc74f5e17949454a8b3(o_5fdd523d0613be7a3eee3fcf73821b31);
             return;
         };
         if (o_3decc86c0e8e098db9596ec537551976 == o_6e94d8ce35f85f4e02edaf2a23647ee2) {
             printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0631\x6D""",
-                             "\x45""rror"". T\x58"" \141n\x64"" \122X ""wir\x65""s ar""e a\x73""sign""ed \x74""o th""e s\x61""m e  p""i\156.\x0A""");
+                             "\x45""rror. T\x58 \141n\x64 \122X wir\x65s are a\x73signed \x74o the s\x61m e  pi\156.\x0A""");
             o_caf09b4914d1bcc74f5e17949454a8b3(o_5fdd523d0613be7a3eee3fcf73821b31);
         };
         printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0632\x6D""",
@@ -268,11 +268,11 @@ void o_4f945a415e974cce52763083f3d894e1(foo_mcu_t *o_5fdd523d0613be7a3eee3fcf738
         };
         if (o_3decc86c0e8e098db9596ec537551976 == o_6e94d8ce35f85f4e02edaf2a23647ee2) {
             printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0631\x6D""",
-                             "\x45""rror"". T\x58"" \141n\x64"" \122X ""wir\x65""s ar""e a\x73""sign""ed \x74""o th""e s\x61""m e  p""i\156.\x0A""");
+                             "\x45rror. T\x58 \141n\x64"" \122X wir\x65""s are a\x73signed \x74""o the s\x61m e  pi\156.\x0A""");
             o_caf09b4914d1bcc74f5e17949454a8b3(o_5fdd523d0613be7a3eee3fcf73821b31);
         };
         printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0632\x6D""",
-                         "\x53""t\141r\x74""i\156g ""a T\x58"" \157p\x65""r\141ti""o\156\x0A");
+                         "\x53t\141r\x74i\156g ""a T\x58 \157p\x65r\141tio\156\x0A");
         o_5fdd523d0613be7a3eee3fcf73821b31->sys_tick_idle =
                 o_5fdd523d0613be7a3eee3fcf73821b31->sys_tick + o_7fc4569c3a90443139409734b95d8a3c;
         o_45c8b920638c46b9ec2035e717d8af3d(o_3f5a390808594b2b59c6baaa7809cfe5);
@@ -296,13 +296,13 @@ void mcu_one_iteration() {
             o_ebdc36287735d9da2a645a50cf4818dc(&(pMcu->regs));
             if (!(pMcu->state ^ 0x0000000000000001)) {
                 printWithSysTick(pMcu, "\x1B""[\0632\x6D""",
-                                 "\x54""X fi""nish""ed. ""Tran""s\155i\x74""t ed ""d\141t\x61"": 0\x78""%\130\x0A",
+                                 "\x54X finished. Trans\155i\x74""ted d\141t\x61: 0\x78""%\130\x0A",
                                  pMcu->regs.TXDATA);
             };
             if (!(pMcu->state ^ 0x0000000000000002)) {
                 pMcu->regs.RXDATA = (uint32_t) rand();
                 printWithSysTick(pMcu, "\x1B""[\0632\x6D""",
-                                 "\x52""X fi""nish""ed. ""R ec\x65""i\166e\x64"" da\x74""a\072 \x30""x\045X\x0A""",
+                                 "\x52X finished. Rec\x65""i\166e\x64"" da\x74""a\072 \x30""x\045X\x0A""",
                                  pMcu->regs.RXDATA);
             };
             pMcu->state = (0x0000000000000000 + 0x0000000000000200 + 0x0000000000000800 -
