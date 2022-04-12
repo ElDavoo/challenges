@@ -22,6 +22,11 @@ or idle (B = 0)
 ▪ Bit 11:18 (RX_PIN): PIN number of the MCU where the RX line is connected
 
  */
+
+/*
+ * FIXME: Packed structs are not part of C specification.
+ * Bit operations should be used instead.
+ */
 typedef struct __attribute__((gcc_struct, __packed__)) {
     unsigned int w: 1;
     unsigned int r: 1;
