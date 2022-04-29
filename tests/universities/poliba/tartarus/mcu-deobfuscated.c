@@ -23,14 +23,14 @@ foo_mcu_t mcu;
 void *regs = &(mcu.regs);
 
 void printWithSysTick(foo_mcu_t *fooMcu,
-                      const char *stringToPrint,
-                      const char *n, ...) {
+                      const char *color,
+                      const char *string, ...) {
     va_list vl;
-    va_start(vl, n);
-    printf("\x25""s\133%\x30""3d] """, stringToPrint,
+    va_start(vl, string);
+    printf("%s[%03d] ", color,
            fooMcu->sys_tick);
-    vprintf(n, vl);
-    printf("\x1B""[\060m");
+    vprintf(string, vl);
+    printf("\x1B[0m");
     va_end(vl);
 };
 
@@ -164,22 +164,22 @@ void o_bc5af8fe1ab51ac1e7f30cdabe23f232(foo_mcu_t *fooMcu) {
     o_41b60993bf8bf35ed776e73e52922f34 = o_90e929fcb044f4de8e3e926490919eb5(pFooMcuRegs);
     o_bcc059fa7cc12a437a31d93a84d4e9a2 = o_77969eea28f6bb59d78f611e4145911b(pFooMcuRegs);
     o_2a6e7e7c79d887866294c6c412680b61 = o_b7afb496fe3bcb9985ff8581fa24e2f0(pFooMcuRegs);
-    printWithSysTick(fooMcu, "\x1B""[\0631\x6D""",
-                     "\x4D""CU regs dump: ");
-    printWithSysTick(fooMcu, "\x1B""[\0631\x6D""",
-                     "\x43""T\122L\x3A"" \124X\x50""I\116: ""%d \x52""X\120I\x4E"": %\x64"" WR\x49""T\105: ""%d \x52""E\101D\x3A"" \045d ""BUS\x59"": %\x64""\x0A",
+    printWithSysTick(fooMcu, "\x1B[31m",
+                     "MCU regs dump: ");
+    printWithSysTick(fooMcu, "\x1B[31m",
+                     "CTRL: TXPIN: %d RXPIN: %d WRITE: %d READ: %d BUSY: %d\n",
                      o_2a6e7e7c79d887866294c6c412680b61, o_bcc059fa7cc12a437a31d93a84d4e9a2,
                      o_46eab19159790a19d97d3495ce1dcd39, o_29497b53c90c3adfb578022f37550aaa,
                      o_41b60993bf8bf35ed776e73e52922f34);
-    printWithSysTick(fooMcu, "\x1B""[\0631\x6D""",
-                     "\x52""X\104A\x54""A\072 \x30""x\045X\x09""T\130D\x41""T\101: ""0\170%\x58""\x0A",
+    printWithSysTick(fooMcu, "\x1B[31m",
+                     "RXDATA: 0x%X\tTXDATA: 0x%X\n",
                      pFooMcuRegs->RXDATA,
                      pFooMcuRegs->TXDATA);
 };
 
 void o_caf09b4914d1bcc74f5e17949454a8b3(foo_mcu_t *o_e56d732b7e5e97e88da8aa6a79021125) {
-    printWithSysTick(o_e56d732b7e5e97e88da8aa6a79021125, "\x1B""[\0631\x6D""",
-                     "\x4D""CU h""alt\x65""d\012");
+    printWithSysTick(o_e56d732b7e5e97e88da8aa6a79021125, "\x1B[31m",
+                     "MCU halted\n");
     o_bc5af8fe1ab51ac1e7f30cdabe23f232(o_e56d732b7e5e97e88da8aa6a79021125);
     while ((0x0000000000000002 + 0x0000000000000201 + 0x0000000000000801 - 0x0000000000000A03)) {};
 };
@@ -190,15 +190,15 @@ uint8_t o_ac02cef19c00e137e7efd46c676269fd(foo_mcu_t *o_9cc5df9f4ad6898a08c9c8f5
     o_eadd8259fd07f6d02d29ad0b20010e13 = &(o_9cc5df9f4ad6898a08c9c8f5e3517ded->regs_old);
     if (o_db05a6b6ce8cb30ec735ab77f7f2beb5(o_8b30ffe368accc4b0ff59cb00ee7b37d) &&
         o_80fffed2be4ec6c9b0cf579d6e8c459f(o_8b30ffe368accc4b0ff59cb00ee7b37d)) {
-        printWithSysTick(o_9cc5df9f4ad6898a08c9c8f5e3517ded, "\x1B""[\0631\x6D""",
-                         "\x45rror. You c\x61""n\156o\x74"" re\x61""d and wri\164e a\164 \x74""he \x73""a\155e tim\x65"".\012");
+        printWithSysTick(o_9cc5df9f4ad6898a08c9c8f5e3517ded, "\x1B""[31m""",
+                         "Error. You cannot read and write at the same time"".\n");
         return (0x0000000000000002 + 0x0000000000000201 + 0x0000000000000801 - 0x0000000000000A03);
     };
     if ((o_db05a6b6ce8cb30ec735ab77f7f2beb5(o_8b30ffe368accc4b0ff59cb00ee7b37d) ||
          o_80fffed2be4ec6c9b0cf579d6e8c459f(o_8b30ffe368accc4b0ff59cb00ee7b37d)) &&
         o_90e929fcb044f4de8e3e926490919eb5(o_8b30ffe368accc4b0ff59cb00ee7b37d)) {
-        printWithSysTick(o_9cc5df9f4ad6898a08c9c8f5e3517ded, "\x1B""[\0631\x6D""",
-                         "\x45rror. You c\x61""n\156o\x74"" re\x61""d or"" \167ri""te \x77""hen the periph is b\x75""s\171.\x0A""");
+        printWithSysTick(o_9cc5df9f4ad6898a08c9c8f5e3517ded, "\x1B""[31m""",
+                         "Error. You cannot read or write when the periph is busy.\n""");
         return (0x0000000000000004 + 0x0000000000000202 + 0x0000000000000802 - 0x0000000000000A06);
     };
     return (0x0000000000000000 + 0x0000000000000200 + 0x0000000000000800 - 0x0000000000000A00);
@@ -228,18 +228,18 @@ void o_4f945a415e974cce52763083f3d894e1(foo_mcu_t *o_5fdd523d0613be7a3eee3fcf738
              (0x000000000000011E + 0x000000000000028F + 0x000000000000088F - 0x0000000000000BAD)) &
             !!(o_3decc86c0e8e098db9596ec537551976 > (0x000000000000011E + 0x000000000000028F + 0x000000000000088F -
                                                      0x0000000000000BAD))) {
-            printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0631\x6D""",
-                             "\x45""rror"". You are tryin\x67 \164o wri\x74""e to \141  pi\156 \x74h\141t i\163 no\164 \x61llo\x77""ed\x0A");
+            printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[31m""",
+                             "Error. You are trying to write to a pin that is not allowed\n");
             o_caf09b4914d1bcc74f5e17949454a8b3(o_5fdd523d0613be7a3eee3fcf73821b31);
             return;
         };
         if (o_3decc86c0e8e098db9596ec537551976 == o_6e94d8ce35f85f4e02edaf2a23647ee2) {
-            printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0631\x6D""",
-                             "\x45""rror. T\x58 \141n\x64 \122X wir\x65s are a\x73signed \x74o the s\x61m e  pi\156.\x0A""");
+            printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[31m""",
+                             "Error. TX and RX wires are assigned to the same  pin.\n""");
             o_caf09b4914d1bcc74f5e17949454a8b3(o_5fdd523d0613be7a3eee3fcf73821b31);
         };
-        printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0632\x6D""",
-                         "\x53""t\141r\x74""i\156g ""a R\x58"" \157p\x65""r\141ti""o\156.\x0A""");
+        printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[32m""",
+                         "Starting a RX operation.\n""");
         o_5fdd523d0613be7a3eee3fcf73821b31->sys_tick_idle =
                 o_5fdd523d0613be7a3eee3fcf73821b31->sys_tick + o_03483490132b42cfebba9b2b0e7c16f3;
         o_a56332c23f30413b1482d90134fb017c(o_3f5a390808594b2b59c6baaa7809cfe5);
@@ -261,18 +261,18 @@ void o_4f945a415e974cce52763083f3d894e1(foo_mcu_t *o_5fdd523d0613be7a3eee3fcf738
              (0x000000000000011E + 0x000000000000028F + 0x000000000000088F - 0x0000000000000BAD)) &
             !!(o_6e94d8ce35f85f4e02edaf2a23647ee2 > (0x000000000000011E + 0x000000000000028F + 0x000000000000088F -
                                                      0x0000000000000BAD))) {
-            printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0631\x6D""",
-                             "\x45""rror"". Yo""u ar""e tr""yin\x67"" \164o ""wri\x74""e to"" \141  p""i\156 \x74""h\141t ""i\163 n""o\164 \x61""llo\x77""ed\x0A");
+            printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[31m""",
+                             "Error. You are trying to write to a  pin that is not allowed\n");
             o_caf09b4914d1bcc74f5e17949454a8b3(o_5fdd523d0613be7a3eee3fcf73821b31);
             return;
         };
         if (o_3decc86c0e8e098db9596ec537551976 == o_6e94d8ce35f85f4e02edaf2a23647ee2) {
-            printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0631\x6D""",
-                             "\x45rror. T\x58 \141n\x64"" \122X wir\x65""s are a\x73signed \x74""o the s\x61m e  pi\156.\x0A""");
+            printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[31m""",
+                             "Error. TX and"" RX wire""s are assigned t""o the sam e  pin.\n""");
             o_caf09b4914d1bcc74f5e17949454a8b3(o_5fdd523d0613be7a3eee3fcf73821b31);
         };
-        printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[\0632\x6D""",
-                         "\x53t\141r\x74i\156g ""a T\x58 \157p\x65r\141tio\156\x0A");
+        printWithSysTick(o_5fdd523d0613be7a3eee3fcf73821b31, "\x1B""[32m""",
+                         "Starting ""a TX operation\n");
         o_5fdd523d0613be7a3eee3fcf73821b31->sys_tick_idle =
                 o_5fdd523d0613be7a3eee3fcf73821b31->sys_tick + o_7fc4569c3a90443139409734b95d8a3c;
         o_45c8b920638c46b9ec2035e717d8af3d(o_3f5a390808594b2b59c6baaa7809cfe5);
@@ -295,14 +295,14 @@ void mcu_one_iteration() {
         if (pMcu->sys_tick == pMcu->sys_tick_idle) {
             o_ebdc36287735d9da2a645a50cf4818dc(&(pMcu->regs));
             if (!(pMcu->state ^ 0x0000000000000001)) {
-                printWithSysTick(pMcu, "\x1B""[\0632\x6D""",
-                                 "\x54X finished. Trans\155i\x74""ted d\141t\x61: 0\x78""%\130\x0A",
+                printWithSysTick(pMcu, "\x1B[32m",
+                                 "TX finished. Transmitted data: 0\x78""%X\n",
                                  pMcu->regs.TXDATA);
             };
             if (!(pMcu->state ^ 0x0000000000000002)) {
                 pMcu->regs.RXDATA = (uint32_t) rand();
-                printWithSysTick(pMcu, "\x1B""[\0632\x6D""",
-                                 "\x52X finished. Rec\x65""i\166e\x64"" da\x74""a\072 \x30""x\045X\x0A""",
+                printWithSysTick(pMcu, "\x1B[32m",
+                                 "RX finished. Received data: 0x%X\n",
                                  pMcu->regs.RXDATA);
             };
             pMcu->state = (0x0000000000000000 + 0x0000000000000200 + 0x0000000000000800 -
@@ -311,7 +311,7 @@ void mcu_one_iteration() {
         o_4f945a415e974cce52763083f3d894e1(pMcu);
         pMcu->regs_old = pMcu->regs;
         addTick(pMcu);
-        printWithSysTick(pMcu, "\x1B""[\0636\x6D""",
-                         "\x54""i\143k\x21""\x0A");
+        printWithSysTick(pMcu, "\x1B[36m",
+                         "Tick!""\n");
     };
 };
