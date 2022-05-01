@@ -18,4 +18,5 @@ Obviously, the main() must be implemented in firmware.c according to specifics (
 Have fun coding with the Tartarus MCU.
 
 # Note (not part of original readme)
-After doing the assignment i wanted to deobfuscate mcu.c for fun. The result is in mcu-deobfuscated.c
+If you can't do it yourself, you can find the solution in
+the branch solution
