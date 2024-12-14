@@ -21,8 +21,20 @@ fn main() {
     if n1.len() != n2.len() {
         panic!("not equal");
     }
+    // Part 1
     for i in 0..n1.len() {
         sum += n1[i].abs_diff(n2[i]);
     }
     println!("{}", sum);
+    
+    // Part 2
+    // Since the lists are sorted, it would be nice to 
+    // make a complex algorithm to find the starting and ending points
+    // in the second array, but here we go.
+    let mut dist = 0;
+    for a in n1 {
+        let occurrences: u32 = n2.iter().filter(|x| **x == a).count() as u32;
+        dist += a*occurrences;
+    }
+    println!("{}", dist);
 }
