@@ -1,0 +1,27 @@
+6 -)
+The matrix A [M] [N] is given. Build a program that finds respectively:
+a. the sum of the elements for each matrix column.
+b. the maximum element for each column and its position.
+c. the minimum element for each column and its position.
+d. the maximum element in its row and the minimum in its column, if this is located.
+
+7 -)
+Given a matrix A [N] [M] and two natural numbers K and G such that K<G<N and K<M.
+Construct a program that finds the sum of the rows of elements between k and g, the average of the rows of elements and the column k
+
+8 -)
+In the matrix GRADE [2] [N] are recorded the grades of n students of a course in a subject that is given as an exam divided into two parts, so the first row has the grades in the exam of the first semester and the second row the grades in the exam of second semester. Build a program that shows if student grades are the same in both exams.
+
+9 -)
+A matrix A [N] [M] is given. List the K column of this matrix
+
+10 -)
+The square matrix A [N] [N] is given. Build a program that finds:
+a. the sum of the elements of the main diagonal;
+b. the sum of the elements of the secondary diagonal
+
+11 -)
+From the elements of the given matrix A [M] [N] to form the matrix B [M] [N] with numerical values:
+a. the same;
+b. increased by the sum of the respective index;
+c. equal to the output of the respective indiex.
