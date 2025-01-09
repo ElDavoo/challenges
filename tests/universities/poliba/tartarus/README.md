@@ -19,4 +19,5 @@ Have fun coding with the Tartarus MCU.
 
 # Note (not part of original readme)
 If you can't do it yourself, you can find the solution in
-the branch solution
+the commit b220524c "Comments", along with a deobfuscation,
+made for fun, of the MCU.  
